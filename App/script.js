@@ -72,8 +72,9 @@ function makeVis(barGraph, piechartMap) {
         bars.transition().duration(250).attr("y", yScale).attr("height", d => height - yScale(d));
         bars.exit().remove();
     }
+}
 
-    class PieChart {
+class PieChart {
     constructor(svg, data) {
         this.svg = svg;
         this.draw(data);
@@ -105,7 +106,7 @@ function makeVis(barGraph, piechartMap) {
         arcs.append("text")
             .attr("transform", d => "translate(" + labelArc.centroid(d) + ")")
             .attr("text-anchor", "middle")
-            .text(d => ${Math.round((d.data / d3.sum(Object.values(data))) * 100)}%);
+            .text(d => `${Math.round((d.data / d3.sum(Object.values(data))) * 100)}%`);
 
         // Legend setup
         const legend = svg.selectAll(".legend")
@@ -128,6 +129,3 @@ function makeVis(barGraph, piechartMap) {
             .text(d => d);
     }
 }
-}
-
-
