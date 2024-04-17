@@ -1,0 +1,79 @@
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.header-title {
+    color: #333;
+    font-size: 2em;
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.section-graph-image, .section-data-visualization {
+    flex: 1;
+    max-width: 800px; /* Adjust this value based on your preferred max width */
+}
+
+.graph-image {
+    width: 100%;
+    height: auto;
+}
+
+.visualizations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vis-bar, .vis-pie {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer {
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.footer-text {
+    color: #333;
+}
+
+@media screen and (max-width: 960px) {
+    .main-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .section-graph-image, .section-data-visualization {
+        max-width: none;
+    }
+}
+
+
+.bar {
+    fill: maroon;
+    opacity: 0.8;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+

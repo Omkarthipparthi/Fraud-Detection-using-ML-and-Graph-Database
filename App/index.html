@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Card Fraud Detection Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">Customer Profile Dashboard</h1>
+    </header>
+
+    <main class="main-container">
+        <section class="section-graph-image">
+            <img src="neo4jGraph.png" alt="Graphical representation of data" class="graph-image">
+        </section>
+
+        <section class="section-data-visualization">
+            <div id="vis-dropdown" class="dropdown">
+                <!-- Dropdown for selecting customer ID will be here -->
+            </div>
+
+            <div class="visualizations">
+                <div id="vis-container" class="vis-bar">
+                    <!-- Bar graph visualization will be rendered here -->
+                </div>
+                <div class="center vis-pie">
+                    <!-- Pie chart visualization will be rendered here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-text">O A A T J S</p>
+    </footer>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
