@@ -72,6 +72,62 @@ function makeVis(barGraph, piechartMap) {
         bars.transition().duration(250).attr("y", yScale).attr("height", d => height - yScale(d));
         bars.exit().remove();
     }
+
+    class PieChart {
+    constructor(svg, data) {
+        this.svg = svg;
+        this.draw(data);
+    }
+
+    draw(data) {
+        const margin = 40, width = 450, height = 450, radius = (Math.min(width, height) / 2) - margin;
+        const color = d3.scale.ordinal().domain(["Legitimate", "Fraudulent"]).range(["#008000", "#FF0000"]);
+        const pie = d3.layout.pie();
+        const arc = d3.svg.arc().outerRadius(radius).innerRadius(0);
+        const labelArc = d3.svg.arc().outerRadius(radius - 40).innerRadius(radius - 40);
+
+        this.svg.selectAll("*").remove();
+        const svg = this.svg.append("svg")
+            .attr("width", width)
+            .attr("height", height + margin) // Ensure height accounts for the margin
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + (height / 2 + margin / 2) + ")"); // Center the pie chart properly
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", -height / 2) // Position the title above the pie chart
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .text("Transaction Type Distribution");
+
+        const arcs = svg.selectAll(".arc").data(pie(Object.values(data))).enter().append("g").attr("class", "arc");
+        arcs.append("path").attr("d", arc).style("fill", (d, i) => color(i));
+        arcs.append("text")
+            .attr("transform", d => "translate(" + labelArc.centroid(d) + ")")
+            .attr("text-anchor", "middle")
+            .text(d => ${Math.round((d.data / d3.sum(Object.values(data))) * 100)}%);
+
+        // Legend setup
+        const legend = svg.selectAll(".legend")
+            .data(color.domain())
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", (d, i) => "translate(0," + (i * 20 - 180) + ")");
+
+        legend.append("rect")
+            .attr("x", width / 2 - 18)
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill", color);
+
+        legend.append("text")
+            .attr("x", width / 2 - 24)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(d => d);
+    }
+}
 }
 
 
